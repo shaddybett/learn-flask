@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <h1>Authors</h1>
     <ul>
-        {% for author in authors %} 
-            <li>{{ author.name }} (Age: {{author.age}}) - Book:{{author.book}} </li>
-        {% endfor %}
+      {% for author in authors %}
+        <li>{{ author.name }} (Age: {{author.age}}) - Book: {{ author.book }}</li>
+      {% endfor %} 
 
     </ul>
-</body>
+  </body>
 </html>
