@@ -1,22 +1,30 @@
-import app
-from app import db, Book,Author
+from models import db, Book, Author
+from flask import Flask
 
-book_data = {
-    'name': 'All Over',
-    'author': 'Yavus',
-    'Pages': 200
-}
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///learn.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+db.init_app(app)
 
-author_data = {
-    'name' : 'Shakesphere',
-    'age': 28,
-    'book': 'R&Juliette'
-}
-
+# Create the application context
 with app.app_context():
+    book_data = {
+        'name': 'All Over',
+        'author': 'Yavus',
+        'pages': 200
+    }
+
+    author_data = {
+        'name': 'Shakespeare',
+        'age': 28,
+        'book': 'R&Juliette'
+    }
+
+    # Add the data to the database
     new_book = Book(**book_data)
     new_author = Author(**author_data)
 
-    db.session.add(new_book)
-    db.session.add(new_author)
-    db.session.commit()
+    # Use the database session to add and commit the data
+    with db.session.begin():
+        db.session.add(new_book)
+        db.session.add(new_author)

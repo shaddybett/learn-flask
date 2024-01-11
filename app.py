@@ -8,8 +8,8 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
 # Create the database tables
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
 
 @app.route('/')
 def home():
@@ -27,3 +27,5 @@ def authors():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
